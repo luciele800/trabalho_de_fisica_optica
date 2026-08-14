@@ -2,73 +2,66 @@
 // EXPERIMENTO DE MIOPIA
 // ==========================================
 
-
-// Pegando os elementos do HTML
-
+// Elementos da página
 const controleGrau = document.getElementById("grau");
-
 const grauValor = document.getElementById("grauValor");
-
 const folheto = document.getElementById("folheto");
-
 const statusTexto = document.getElementById("statusTexto");
+const mensagemVisao = document.getElementById("mensagemVisao");
+const botaoCorrecao = document.getElementById("botaoCorrecao");
+const botaoReset = document.getElementById("botaoReset");
 
-const mensagemVisao =
-    document.getElementById("mensagemVisao");
-
-const botaoCorrecao =
-    document.getElementById("botaoCorrecao");
-
-const botaoReset =
-    document.getElementById("botaoReset");
-
-
-// Guarda se o usuário está vendo
-// a simulação depois da correção.
-
+// Guarda se a correção está ativada
 let correcaoAtiva = false;
 
 
 // ==========================================
-// ALTERAR O GRAU
+// MOSTRAR O GRAU NA TELA
 // ==========================================
 
-controleGrau.addEventListener("input", function () {
+function mostrarGrau(grau) {
 
-    // Pega o valor escolhido pelo usuário
+    if (grau === 0) {
+        grauValor.textContent = "0,00";
+    } else {
+        grauValor.textContent =
+            "-" + grau.toFixed(2).replace(".", ",");
+    }
+}
+
+
+// ==========================================
+// ATUALIZAR A VISÃO
+// ==========================================
+
+function atualizarVisao() {
 
     const grau = Number(controleGrau.value);
 
-
-    // Mostra o grau na tela
-
-    if (grau === 0) {
-
-        grauValor.textContent = "0,00";
-
-    } else {
-
-        grauValor.textContent =
-            "-" + grau.toFixed(2).replace(".", ",");
-
-    }
+    // Mostra o número escolhido
+    mostrarGrau(grau);
 
 
-    // Se a correção estiver ativada,
-    // o usuário pode mexer no grau,
-    // mas a imagem continua nítida.
+    // --------------------------------------
+    // SE A CORREÇÃO ESTIVER ATIVADA
+    // --------------------------------------
 
     if (correcaoAtiva) {
 
+        // A imagem fica totalmente nítida
+        folheto.style.filter = "blur(0px)";
+
+        statusTexto.textContent =
+            "Visão após a correção";
+
         mensagemVisao.innerHTML = `
             <strong>
-                Imagem representada após a correção.
+                A imagem está nítida! ✨
             </strong>
 
             <p>
-                Nesta simulação educativa, a imagem
-                permanece nítida para representar
-                a correção do foco.
+                Nesta simulação, a correção representa
+                a formação da imagem com foco adequado.
             </p>
         `;
 
@@ -76,8 +69,9 @@ controleGrau.addEventListener("input", function () {
     }
 
 
-    // Se o grau for zero,
-    // não aplicamos desfoque.
+    // --------------------------------------
+    // SEM MIOPIA
+    // --------------------------------------
 
     if (grau === 0) {
 
@@ -92,7 +86,7 @@ controleGrau.addEventListener("input", function () {
             </strong>
 
             <p>
-                Neste exemplo, não há grau de miopia.
+                Neste exemplo, o grau selecionado é 0,00.
             </p>
         `;
 
@@ -100,143 +94,21 @@ controleGrau.addEventListener("input", function () {
     }
 
 
-    // ======================================
-    // CALCULAR O DESFOQUE
-    // ======================================
+    // --------------------------------------
+    // COM MIOPIA
+    // --------------------------------------
 
     /*
-        O desfoque começa pequeno
-        e aumenta conforme o grau.
+        O valor do desfoque é calculado
+        a partir do grau escolhido.
 
-        Grau 0    → 0px
-        Grau 1    → 2px
-        Grau 2    → 4px
-        Grau 3    → 6px
-        Grau 4    → 8px
-        Grau 5    → 10px
+        -0,25 → 0,5px
+        -1,00 → 2px
+        -2,00 → 4px
+        -3,00 → 6px
+        -4,00 → 8px
+        -5,00 → 10px
     */
-
-    const desfoque = grau * 2;
-
-    folheto.style.filter =
-        `blur(${desfoque}px)`;
-
-
-    statusTexto.textContent =
-        "Visão com miopia";
-
-
-    mensagemVisao.innerHTML = `
-        <strong>
-            A imagem está ficando desfocada.
-        </strong>
-
-        <p>
-            Grau selecionado:
-            <strong>
-                -${grau.toFixed(2).replace(".", ",")}
-            </strong>
-        </p>
-    `;
-
-});
-
-
-// ==========================================
-// BOTÃO "DEPOIS DA CORREÇÃO"
-// ==========================================
-
-botaoCorrecao.addEventListener("click", function () {
-
-    correcaoAtiva = !correcaoAtiva;
-
-
-    if (correcaoAtiva) {
-
-        // Retira o desfoque
-
-        folheto.classList.add("corrigido");
-
-        folheto.style.filter =
-            "blur(0px)";
-
-
-        // Muda o botão
-
-        botaoCorrecao.textContent =
-            "↩ Voltar para antes";
-
-
-        botaoCorrecao.classList.add("ativo");
-
-
-        // Muda a informação
-
-        statusTexto.textContent =
-            "Imagem após a correção";
-
-
-        mensagemVisao.innerHTML = `
-            <strong>
-                Agora a imagem está nítida! ✨
-            </strong>
-
-            <p>
-                A simulação representa o que acontece
-                quando a formação da imagem é corrigida.
-            </p>
-        `;
-
-
-    } else {
-
-        // Volta para o grau escolhido
-
-        folheto.classList.remove("corrigido");
-
-        botaoCorrecao.classList.remove("ativo");
-
-        botaoCorrecao.textContent =
-            "✨ Ver depois da correção";
-
-
-        aplicarDesfoque();
-
-    }
-
-});
-
-
-// ==========================================
-// FUNÇÃO PARA APLICAR O DESFOQUE
-// ==========================================
-
-function aplicarDesfoque() {
-
-    const grau = Number(controleGrau.value);
-
-
-    if (grau === 0) {
-
-        folheto.style.filter =
-            "blur(0px)";
-
-        statusTexto.textContent =
-            "Visão sem miopia";
-
-        mensagemVisao.innerHTML = `
-            <strong>
-                A imagem está nítida.
-            </strong>
-
-            <p>
-                Neste exemplo, não há grau de miopia.
-            </p>
-        `;
-
-        return;
-    }
-
 
     const desfoque = grau * 2;
 
@@ -254,13 +126,83 @@ function aplicarDesfoque() {
         </strong>
 
         <p>
-            Quanto maior o grau selecionado,
-            maior é o desfoque utilizado
-            nesta representação.
+            Grau selecionado:
+            <strong>
+                -${grau.toFixed(2).replace(".", ",")}
+            </strong>
         </p>
     `;
-
 }
+
+
+// ==========================================
+// CONTROLE DO GRAU
+// ==========================================
+
+controleGrau.addEventListener("input", function () {
+
+    /*
+        Toda vez que você arrastar a bolinha
+        do controle, esta função será chamada.
+    */
+
+    atualizarVisao();
+
+});
+
+
+// ==========================================
+// BOTÃO DE CORREÇÃO
+// ==========================================
+
+botaoCorrecao.addEventListener("click", function () {
+
+    // Inverte o estado
+    correcaoAtiva = !correcaoAtiva;
+
+
+    if (correcaoAtiva) {
+
+        // ----------------------------------
+        // DEPOIS DA CORREÇÃO
+        // ----------------------------------
+
+        folheto.style.filter = "blur(0px)";
+
+        statusTexto.textContent =
+            "Visão após a correção";
+
+        mensagemVisao.innerHTML = `
+            <strong>
+                Agora a imagem está nítida! ✨
+            </strong>
+
+            <p>
+                A simulação representa a imagem
+                depois da correção do foco.
+            </p>
+        `;
+
+        botaoCorrecao.textContent =
+            "↩ Voltar para antes";
+
+        botaoCorrecao.classList.add("ativo");
+
+    } else {
+
+        // ----------------------------------
+        // VOLTAR PARA A MIOPIA
+        // ----------------------------------
+
+        botaoCorrecao.textContent =
+            "✨ Ver depois da correção";
+
+        botaoCorrecao.classList.remove("ativo");
+
+        atualizarVisao();
+    }
+
+});
 
 
 // ==========================================
@@ -269,34 +211,20 @@ function aplicarDesfoque() {
 
 botaoReset.addEventListener("click", function () {
 
-    // Volta para -2,00
-
-    controleGrau.value = 2;
-
-    grauValor.textContent = "-2,00";
-
+    // Volta o controle para -2,00
+    controleGrau.value = "2";
 
     // Desativa a correção
-
     correcaoAtiva = false;
 
-
-    // Remove classes
-
-    folheto.classList.remove("corrigido");
-
-    botaoCorrecao.classList.remove("ativo");
-
-
     // Volta o texto do botão
-
     botaoCorrecao.textContent =
         "✨ Ver depois da correção";
 
+    botaoCorrecao.classList.remove("ativo");
 
-    // Aplica novamente o desfoque
-
-    aplicarDesfoque();
+    // Atualiza tudo
+    atualizarVisao();
 
 });
 
@@ -305,7 +233,5 @@ botaoReset.addEventListener("click", function () {
 // INICIAR O EXPERIMENTO
 // ==========================================
 
-// Quando o site abre,
-// começa automaticamente com -2,00.
-
-aplicarDesfoque();
+// Começa com -2,00
+atualizarVisao();
