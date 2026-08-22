@@ -1,413 +1,332 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>A Física da Visão</title>
+    <title>Visão em Foco | Ótica & Cirurgia Ocular</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
+<nav>
+    <div class="logo">MEU PROJETO • VISÃO EM FOCO</div>
 
-    <h2>👁️ A Física da Visão</h2>
-
-    <nav>
-        <a href="#inicio">Início</a>
+    <div>
+        <a href="#otica">Ótica</a>
+        <a href="#cirurgia">Cirurgia</a>
         <a href="#experimento">Experimento</a>
-        <a href="#fisica">Física</a>
-    </nav>
+        <a href="#quiz">Quiz</a>
+    </div>
+</nav>
 
+<header class="hero">
+    <div>
+        <span class="badge">CIÊNCIA • VISÃO • TECNOLOGIA</span>
+
+        <h1>
+            O mundo muda quando você consegue enxergá-lo.
+        </h1>
+
+        <p>
+            Eu montei este projeto para explicar, de um jeito simples,
+            como a luz, as lentes e os nossos olhos trabalham juntos —
+            e o que acontece quando uma cirurgia ocular entra nessa história.
+        </p>
+
+        <a class="btn" href="#experimento">
+            Testar experimento ↓
+        </a>
+
+        <a class="btn secundario" href="#cirurgia">
+            Explorar cirurgia
+        </a>
+    </div>
 </header>
 
 
-<main>
-
-    <!-- =========================
-         INÍCIO
-    ========================== -->
-
-    <section class="inicio" id="inicio">
-
-        <div class="inicio-texto">
-
-            <span>FÍSICA NO NOSSO DIA A DIA</span>
-
-            <h1>
-                E se você pudesse
-                <strong>experimentar a miopia?</strong>
-            </h1>
-
-            <p>
-                Descubra de uma forma simples como diferentes
-                graus de miopia podem afetar a nitidez da visão.
-            </p>
-
-            <a href="#experimento" class="botao">
-                Fazer o experimento ↓
-            </a>
-
-        </div>
-
-
-        <div class="olho">
-            👁️
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         EXPLICAÇÃO
-    ========================== -->
-
-    <section class="explicacao">
-
-        <span>01</span>
-
-        <h2>
-            Primeiro, vamos entender a Física.
-        </h2>
-
-        <p>
-            Para enxergarmos uma imagem com nitidez, a luz
-            precisa ser focalizada corretamente sobre a retina.
-            Na miopia, esse foco acontece antes da retina,
-            fazendo com que objetos distantes possam parecer
-            desfocados.
-        </p>
-
-    </section>
-
-
-    <!-- =========================
-         EXPERIMENTO
-    ========================== -->
-
-    <section class="experimento" id="experimento">
-
-        <div class="titulo">
-
-            <span>EXPERIMENTO VIRTUAL</span>
-
-            <h2>
-                Como a miopia muda a visão?
-            </h2>
-
-            <p>
-                Escolha um grau e observe o que acontece
-                com o folheto.
-            </p>
-
-        </div>
-
-
-        <div class="experimento-container">
-
-
-            <!-- =========================
-                 CONTROLES
-            ========================== -->
-
-            <div class="controle">
-
-                <small>PASSO 01</small>
-
-                <h3>
-                    Escolha o grau de miopia
-                </h3>
-
-                <p>
-                    Arraste a bolinha para aumentar
-                    ou diminuir o grau.
-                </p>
-
-
-                <div
-                    class="numero-grau"
-                    id="grauValor"
-                >
-                    -2,00
-                </div>
-
-
-                <input
-                    type="range"
-                    id="grau"
-                    min="0"
-                    max="5"
-                    step="0.25"
-                    value="2"
-                    aria-label="Grau de miopia"
-                >
-
-
-                <div class="escala">
-
-                    <span>0,00</span>
-
-                    <span>-5,00</span>
-
-                </div>
-
-
-                <div class="status">
-
-                    <span class="status-ponto"></span>
-
-                    <p id="statusTexto">
-                        Visão com miopia
-                    </p>
-
-                </div>
-
-
-                <hr>
-
-
-                <small>PASSO 02</small>
-
-                <h3>
-                    Depois da correção
-                </h3>
-
-                <p>
-                    Clique no botão para deixar
-                    o folheto nítido novamente.
-                </p>
-
-
-                <button
-                    type="button"
-                    id="botaoCorrecao"
-                >
-                    ✨ Ver depois da correção
-                </button>
-
-
-                <button
-                    type="button"
-                    id="botaoReset"
-                >
-                    ↺ Reiniciar
-                </button>
-
-            </div>
-
-
-            <!-- =========================
-                 FOLHETO
-            ========================== -->
-
-            <div class="area-folheto">
-
-                <p class="legenda">
-                    COMO A PESSOA ESTÁ ENXERGANDO
-                </p>
-
-
-                <div
-                    class="folheto"
-                    id="folheto"
-                >
-
-                    <div class="folheto-topo">
-                        👁️ FÍSICA & VISÃO
-                    </div>
-
-
-                    <div class="folheto-conteudo">
-
-                        <small>
-                            VOCÊ SABIA?
-                        </small>
-
-                        <h2>
-                            MIOPIA
-                        </h2>
-
-                        <div class="linha"></div>
-
-
-                        <h3>
-                            Quando objetos distantes
-                            podem parecer desfocados.
-                        </h3>
-
-
-                        <p>
-                            Na miopia, a luz é focalizada
-                            antes da retina, dificultando
-                            a formação de uma imagem nítida
-                            de objetos distantes.
-                        </p>
-
-
-                        <div class="informacoes">
-
-                            <div>
-                                👓
-                                <span>
-                                    Correção óptica
-                                </span>
-                            </div>
-
-                            <div>
-                                💡
-                                <span>
-                                    Refração da luz
-                                </span>
-                            </div>
-
-                        </div>
-
-
-                        <p class="frase">
-                            A Física também está
-                            na maneira como enxergamos.
-                        </p>
-
-                    </div>
-
-
-                    <div class="rodape-folheto">
-                        ÓPTICA GEOMÉTRICA
-                    </div>
-
-                </div>
-
-
-                <div
-                    class="mensagem"
-                    id="mensagem"
-                >
-
-                    <strong>
-                        A imagem está desfocada.
-                    </strong>
-
-                    <p>
-                        Aumente ou diminua o grau
-                        para observar a diferença.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         FÍSICA
-    ========================== -->
-
-    <section
-        class="fisica"
-        id="fisica"
-    >
-
-        <span>02</span>
-
-        <h2>
-            O que a Física explica?
-        </h2>
-
-
-        <div class="cards">
-
-            <div>
-
-                <h3>💡 Luz</h3>
-
-                <p>
-                    A luz transporta a informação
-                    que permite formar uma imagem.
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <h3>🔎 Refração</h3>
-
-                <p>
-                    A luz muda de direção ao atravessar
-                    diferentes meios.
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <h3>🎯 Foco</h3>
-
-                <p>
-                    Na visão normal, a imagem é formada
-                    sobre a retina.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-</main>
-
-
-<!-- =========================
-     RODAPÉ
-========================== -->
-
-<footer>
-
-    <p>
-        Projeto de Física — Óptica Geométrica
+<section id="otica">
+
+    <h2 class="section-title">
+        Entendendo a ótica
+    </h2>
+
+    <p class="section-sub">
+        A luz entra no olho e precisa ser direcionada para formar
+        uma imagem nítida na retina.
     </p>
 
+    <div class="grid">
 
-    <div class="integrantes">
+        <div class="card">
+            <div class="icon">🔎</div>
 
-        <p>
-            <strong>Integrantes:</strong>
-            Luciele Oliveira · Lauane Lemes · Larissa Santiago · Eloisa Ianz
-        </p>
+            <h3>Refração</h3>
 
-        <p>
-            <strong>Turma:</strong>
-            2A
-        </p>
+            <p>
+                É a mudança na direção da luz ao passar de um meio
+                para outro. Córnea e cristalino ajudam a focalizar a luz.
+            </p>
+        </div>
 
-        <p>
-            <strong>Professor:</strong>
-            Everton
-        </p>
 
-        <p>
-            <strong>Matéria:</strong>
-            Física e Tecnociências
-        </p>
+        <div class="card">
+            <div class="icon">👁️</div>
+
+            <h3>Retina</h3>
+
+            <p>
+                Uma camada sensível à luz que transforma a informação
+                luminosa em sinais enviados ao cérebro.
+            </p>
+        </div>
+
+
+        <div class="card">
+            <div class="icon">👓</div>
+
+            <h3>Lentes</h3>
+
+            <p>
+                Óculos e lentes de contato podem alterar o caminho
+                da luz para ajudar a imagem a chegar ao foco adequado.
+            </p>
+        </div>
 
     </div>
 
-</footer>
+</section>
 
 
-<!-- =========================
-     JAVASCRIPT
-========================== -->
+<section id="cirurgia">
 
-<script src="script.js"></script>
+    <h2 class="section-title">
+        Mas e a cirurgia ocular?
+    </h2>
 
-</body>
+    <p class="section-sub">
+        Existem diferentes procedimentos, indicados para situações
+        específicas e sempre avaliados por profissionais especializados.
+    </p>
 
-</html>
+
+    <div class="timeline">
+
+        <div class="step">
+            <strong>01 — Avaliação</strong>
+
+            <p>
+                Exames verificam a saúde ocular, o grau e outras
+                características importantes antes de qualquer decisão.
+            </p>
+        </div>
+
+
+        <div class="step">
+            <strong>02 — Planejamento</strong>
+
+            <p>
+                O procedimento depende do objetivo e das condições
+                de cada paciente. Não existe uma cirurgia única para todos.
+            </p>
+        </div>
+
+
+        <div class="step">
+            <strong>03 — Procedimento</strong>
+
+            <p>
+                Algumas técnicas atuam na córnea, enquanto outras
+                podem envolver o cristalino ou outras estruturas do olho.
+            </p>
+        </div>
+
+
+        <div class="step">
+            <strong>04 — Acompanhamento</strong>
+
+            <p>
+                O período após o procedimento é importante para
+                acompanhar a recuperação e identificar qualquer alteração.
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="grid cirurgia-cards">
+
+        <div class="card">
+
+            <h3>Cirurgia refrativa</h3>
+
+            <p>
+                Procedimentos como LASIK e PRK remodelam a córnea
+                para modificar a forma como a luz é focalizada.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Catarata</h3>
+
+            <p>
+                Na cirurgia de catarata, o cristalino opacificado
+                é substituído por uma lente intraocular.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Importante</h3>
+
+            <p>
+                Este site é educativo e não substitui avaliação,
+                diagnóstico ou orientação de um oftalmologista.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="experimento">
+
+    <h2 class="section-title">
+        🔬 Meu laboratório da visão
+    </h2>
+
+    <p class="section-sub">
+        Experimente diferentes situações de visão e observe
+        como uma lente corretora pode alterar a nitidez.
+    </p>
+
+
+    <div class="experiment">
+
+        <div class="exp-grid">
+
+
+            <div class="eye-box">
+
+                <div class="eye" id="eye">
+
+                    <div class="iris">
+
+                        <div class="pupil"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="controls">
+
+                <label>
+                    Escolha uma situação:
+                </label>
+
+
+                <select id="visionType">
+
+                    <option value="normal">
+                        Visão normal (modelo)
+                    </option>
+
+                    <option value="myopia">
+                        Miopia (modelo)
+                    </option>
+
+                    <option value="hyperopia">
+                        Hipermetropia (modelo)
+                    </option>
+
+                </select>
+
+
+                <label>
+                    Ajuste a lente corretora:
+                </label>
+
+
+                <input
+                    id="lens"
+                    type="range"
+                    min="-100"
+                    max="100"
+                    value="0"
+                >
+
+
+                <div class="result">
+
+                    <b id="status">
+                        Imagem em foco
+                    </b>
+
+                    <br>
+
+                    <span id="explanation">
+                        No modelo, a luz está chegando ao foco esperado.
+                    </span>
+
+                </div>
+
+
+                <p class="warning">
+
+                    💡 Tente escolher miopia ou hipermetropia e
+                    mover a barra. A ideia é perceber que uma lente
+                    pode mudar o caminho da luz.
+
+                    <br><br>
+
+                    Isso é uma simulação educativa, não um teste de visão.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="quiz">
+
+    <h2 class="section-title">
+        🧠 Quiz: cirurgia ocular
+    </h2>
+
+    <p class="section-sub">
+        Será que uma pessoa consegue descobrir sozinha se a cirurgia
+        é indicada? Vamos testar o que você aprendeu.
+    </p>
+
+
+    <div class="card quiz">
+
+
+        <div class="question">
+
+            <h3>
+                1. Qual é uma das primeiras atitudes para saber
+                se uma cirurgia ocular pode ser indicada?
+            </h3>
+
+            <label class="option">
+                <input type="radio" name="q1" value="a">
+                Fazer uma avaliação com oftalmologista
+            </label
