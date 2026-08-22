@@ -1,3 +1,207 @@
+/* =========================================
+   EXPERIMENTO DE VISÃO
+   ========================================= */
+
+const visionType =
+    document.getElementById("visionType");
+
+const lens =
+    document.getElementById("lens");
+
+const eye =
+    document.getElementById("eye");
+
+const status =
+    document.getElementById("status");
+
+const explanation =
+    document.getElementById("explanation");
+
+
+function updateVision() {
+
+    const type =
+        visionType.value;
+
+    const value =
+        Number(lens.value);
+
+    let target = 0;
+
+
+    /*
+       Estes valores são apenas uma
+       representação simplificada para
+       o experimento educativo.
+    */
+
+    if (type === "myopia") {
+
+        target = 55;
+
+    }
+
+
+    if (type === "hyperopia") {
+
+        target = -55;
+
+    }
+
+
+    const difference =
+        Math.abs(value - target);
+
+
+    const blur =
+        Math.min(
+            13,
+            difference / 5
+        );
+
+
+    eye.style.filter =
+        `blur(${blur}px)`;
+
+
+    eye.style.transform =
+        `scale(${1 + difference / 900})`;
+
+
+    if (difference < 12) {
+
+        status.textContent =
+            "✨ Foco corrigido no modelo";
+
+        explanation.textContent =
+            "A lente está próxima do ajuste que este modelo usa para representar a correção.";
+
+    }
+
+    else {
+
+        status.textContent =
+            "◌ Ainda há desfoco";
+
+        explanation.textContent =
+            "Mova a barra e observe como mudar a lente altera a nitidez representada.";
+
+    }
+
+}
+
+
+/* Quando muda o tipo de visão */
+
+visionType.onchange = function () {
+
+    lens.value = 0;
+
+    updateVision();
+
+};
+
+
+/* Quando mexe na lente */
+
+lens.oninput =
+    updateVision;
+
+
+/* Inicia o experimento */
+
+updateVision();
+
+
+
+/* =========================================
+   QUIZ
+   ========================================= */
+
+function checkQuiz() {
+
+    const answers = {
+
+        q1: "a",
+
+        q2: "b",
+
+        q3: "a",
+
+        q4: "b",
+
+        q5: "b"
+
+    };
+
+
+    let score = 0;
+
+
+    Object.keys(answers).forEach(
+        function (question) {
+
+            const selected =
+                document.querySelector(
+                    `input[name="${question}"]:checked`
+                );
+
+
+            if (
+                selected &&
+                selected.value === answers[question]
+            ) {
+
+                score++;
+
+            }
+
+        }
+    );
+
+
+    const result =
+        document.getElementById(
+            "quizResult"
+        );
+
+
+    result.style.display =
+        "block";
+
+
+    let message;
+
+
+    if (score === 5) {
+
+        message =
+            "🎉 5/5! Você mandou muito bem!";
+
+    }
+
+    else if (score >= 3) {
+
+        message =
+            `👏 ${score}/5! Você já entendeu os principais pontos.`;
+
+    }
+
+    else {
+
+        message =
+            `💡 ${score}/5. Vale a pena revisar as partes sobre avaliação e cirurgia.`;
+
+    }
+
+
+    result.innerHTML =
+        message +
+        "<br><small>" +
+        "Lembrete: este quiz é educativo e não consegue dizer se uma cirurgia é indicada para uma pessoa real." +
+        "</small>";
+
+}
 <section id="quiz">
 
     <h2 class="section-title">
