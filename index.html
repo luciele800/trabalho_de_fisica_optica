@@ -1,395 +1,616 @@
-/* =========================================
-   EXPERIMENTO DE VISÃO
-   ========================================= */
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-const visionType =
-    document.getElementById("visionType");
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-const lens =
-    document.getElementById("lens");
+    <title>Visão em Foco</title>
 
-const eye =
-    document.getElementById("eye");
+    <link rel="stylesheet" href="style.css">
+</head>
 
-const status =
-    document.getElementById("status");
+<body>
 
-const explanation =
-    document.getElementById("explanation");
+    <!-- =========================
+         MENU
+    ========================== -->
 
+    <nav class="navbar">
 
-function updateVision() {
+        <div class="logo">
+            VISÃO EM FOCO
+        </div>
 
-    const type =
-        visionType.value;
+        <div class="menu">
 
-    const value =
-        Number(lens.value);
+            <a href="#otica">Ótica</a>
+            <a href="#cirurgia">Cirurgia</a>
+            <a href="#experimento">Experimento</a>
+            <a href="#quiz">Quiz</a>
 
-    let target = 0;
+        </div>
 
+    </nav>
 
-    /*
-       Estes valores são apenas uma
-       representação simplificada para
-       o experimento educativo.
-    */
 
-    if (type === "myopia") {
+    <!-- =========================
+         CAPA
+    ========================== -->
 
-        target = 55;
+    <header class="hero">
 
-    }
+        <div class="hero-content">
 
+            <span class="badge">
+                FÍSICA • VISÃO • TECNOLOGIA
+            </span>
 
-    if (type === "hyperopia") {
+            <h1>
+                O mundo muda quando você consegue enxergá-lo.
+            </h1>
 
-        target = -55;
+            <p>
+                Este projeto mostra, de uma maneira simples e
+                interativa, como a luz, as lentes e os nossos
+                olhos trabalham juntos.
+            </p>
 
-    }
+            <a href="#experimento" class="btn">
+                Testar experimento
+            </a>
 
+            <a href="#cirurgia" class="btn btn-outline">
+                Conhecer a cirurgia
+            </a>
 
-    const difference =
-        Math.abs(value - target);
+        </div>
 
+    </header>
 
-    const blur =
-        Math.min(
-            13,
-            difference / 5
-        );
 
+    <!-- =========================
+         ÓTICA
+    ========================== -->
 
-    eye.style.filter =
-        `blur(${blur}px)`;
+    <section id="otica">
 
+        <h2 class="section-title">
+            Entendendo a Ótica
+        </h2>
 
-    eye.style.transform =
-        `scale(${1 + difference / 900})`;
+        <p class="section-subtitle">
+            A ótica é a parte da Física que estuda a luz
+            e seus fenômenos.
+        </p>
 
 
-    if (difference < 12) {
+        <div class="cards">
 
-        status.textContent =
-            "✨ Foco corrigido no modelo";
+            <div class="card">
 
-        explanation.textContent =
-            "A lente está próxima do ajuste que este modelo usa para representar a correção.";
+                <div class="icon">
+                    🔎
+                </div>
 
-    }
+                <h3>
+                    Refração
+                </h3>
 
-    else {
+                <p>
+                    A refração acontece quando a luz muda sua
+                    direção ao passar de um meio para outro.
+                    Esse fenômeno é importante para a formação
+                    das imagens no olho.
+                </p>
 
-        status.textContent =
-            "◌ Ainda há desfoco";
+            </div>
 
-        explanation.textContent =
-            "Mova a barra e observe como mudar a lente altera a nitidez representada.";
 
-    }
+            <div class="card">
 
-}
+                <div class="icon">
+                    👁️
+                </div>
 
+                <h3>
+                    Retina
+                </h3>
 
-/* Quando muda o tipo de visão */
+                <p>
+                    A retina é uma estrutura do olho sensível
+                    à luz. Ela participa do processo que permite
+                    que o cérebro interprete as imagens.
+                </p>
 
-visionType.onchange = function () {
+            </div>
 
-    lens.value = 0;
 
-    updateVision();
+            <div class="card">
 
-};
+                <div class="icon">
+                    👓
+                </div>
 
+                <h3>
+                    Lentes
+                </h3>
 
-/* Quando mexe na lente */
+                <p>
+                    As lentes podem modificar o caminho da luz.
+                    Óculos e lentes de contato utilizam esse
+                    princípio para corrigir determinados
+                    problemas de visão.
+                </p>
 
-lens.oninput =
-    updateVision;
+            </div>
 
+        </div>
 
-/* Inicia o experimento */
+    </section>
 
-updateVision();
 
+    <!-- =========================
+         CIRURGIA
+    ========================== -->
 
+    <section id="cirurgia">
 
-/* =========================================
-   QUIZ
-   ========================================= */
+        <h2 class="section-title">
+            Cirurgia Ocular
+        </h2>
 
-function checkQuiz() {
+        <p class="section-subtitle">
+            Existem diferentes tipos de procedimentos
+            oculares, indicados para situações específicas.
+        </p>
 
-    const answers = {
 
-        q1: "a",
+        <div class="timeline">
 
-        q2: "b",
+            <div class="timeline-item">
 
-        q3: "a",
+                <strong>
+                    01 — Avaliação
+                </strong>
 
-        q4: "b",
+                <p>
+                    O oftalmologista avalia os olhos e verifica
+                    as características de cada paciente.
+                </p>
 
-        q5: "b"
+            </div>
 
-    };
 
+            <div class="timeline-item">
 
-    let score = 0;
+                <strong>
+                    02 — Exames
+                </strong>
 
+                <p>
+                    Os exames ajudam o profissional a conhecer
+                    melhor as condições dos olhos.
+                </p>
 
-    Object.keys(answers).forEach(
-        function (question) {
+            </div>
 
-            const selected =
-                document.querySelector(
-                    `input[name="${question}"]:checked`
-                );
 
+            <div class="timeline-item">
 
-            if (
-                selected &&
-                selected.value === answers[question]
-            ) {
+                <strong>
+                    03 — Procedimento
+                </strong>
 
-                score++;
+                <p>
+                    Dependendo do caso, diferentes técnicas
+                    podem ser utilizadas.
+                </p>
 
-            }
+            </div>
 
-        }
-    );
 
+            <div class="timeline-item">
 
-    const result =
-        document.getElementById(
-            "quizResult"
-        );
+                <strong>
+                    04 — Acompanhamento
+                </strong>
 
+                <p>
+                    Depois do procedimento, o acompanhamento
+                    é importante para observar a recuperação.
+                </p>
 
-    result.style.display =
-        "block";
-
-
-    let message;
-
-
-    if (score === 5) {
-
-        message =
-            "🎉 5/5! Você mandou muito bem!";
-
-    }
-
-    else if (score >= 3) {
-
-        message =
-            `👏 ${score}/5! Você já entendeu os principais pontos.`;
-
-    }
-
-    else {
-
-        message =
-            `💡 ${score}/5. Vale a pena revisar as partes sobre avaliação e cirurgia.`;
-
-    }
-
-
-    result.innerHTML =
-        message +
-        "<br><small>" +
-        "Lembrete: este quiz é educativo e não consegue dizer se uma cirurgia é indicada para uma pessoa real." +
-        "</small>";
-
-}
-<section id="quiz">
-
-    <h2 class="section-title">
-        🧠 Quiz sobre cirurgia ocular
-    </h2>
-
-    <p class="section-sub">
-        Teste seus conhecimentos!
-    </p>
-
-
-    <div class="card quiz">
-
-
-        <!-- PERGUNTA 1 -->
-
-        <div class="question">
-
-            <h3>
-                1. Qual é uma das primeiras atitudes para saber
-                se uma cirurgia ocular pode ser indicada?
-            </h3>
-
-            <label class="option">
-                <input type="radio" name="q1" value="a">
-                Fazer uma avaliação com oftalmologista
-            </label>
-
-            <label class="option">
-                <input type="radio" name="q1" value="b">
-                Escolher a cirurgia pela internet
-            </label>
-
-            <label class="option">
-                <input type="radio" name="q1" value="c">
-                Usar o mesmo procedimento de um amigo
-            </label>
-
-            <label class="option">
-                <input type="radio" name="q1" value="d">
-                Decidir apenas pelo grau dos óculos
-            </label>
+            </div>
 
         </div>
 
 
-        <!-- PERGUNTA 2 -->
+        <div class="cards surgery-cards">
 
-        <div class="question">
+            <div class="card">
 
-            <h3>
-                2. Por que os exames são importantes
-                antes de uma cirurgia?
-            </h3>
+                <h3>
+                    Cirurgia refrativa
+                </h3>
 
-            <label class="option">
-                <input type="radio" name="q2" value="a">
-                Para escolher a cor dos olhos
-            </label>
+                <p>
+                    Técnicas como LASIK e PRK podem modificar
+                    o formato da córnea para alterar a forma
+                    como a luz é focalizada.
+                </p>
 
-            <label class="option">
-                <input type="radio" name="q2" value="b">
-                Para avaliar as condições dos olhos
-            </label>
-
-            <label class="option">
-                <input type="radio" name="q2" value="c">
-                Para garantir o mesmo resultado para todos
-            </label>
-
-            <label class="option">
-                <input type="radio" name="q2" value="d">
-                Para substituir a consulta médica
-            </label>
-
-        </div>
+            </div>
 
 
-        <!-- PERGUNTA 3 -->
+            <div class="card">
 
-        <div class="question">
+                <h3>
+                    Catarata
+                </h3>
 
-            <h3>
-                3. Qual cirurgia está relacionada à
-                substituição do cristalino?
-            </h3>
+                <p>
+                    Na cirurgia de catarata, o cristalino
+                    opacificado é substituído por uma lente
+                    intraocular.
+                </p>
 
-            <label class="option">
-                <input type="radio" name="q3" value="a">
-                Cirurgia de catarata
-            </label>
+            </div>
 
-            <label class="option">
-                <input type="radio" name="q3" value="b">
-                Cirurgia refrativa
-            </label>
 
-            <label class="option">
-                <input type="radio" name="q3" value="c">
-                Cirurgia de estrabismo
-            </label>
+            <div class="card">
 
-            <label class="option">
-                <input type="radio" name="q3" value="d">
-                Cirurgia de retina
-            </label>
+                <h3>
+                    Importante
+                </h3>
+
+                <p>
+                    Este site é um projeto educativo e não
+                    substitui uma avaliação médica.
+                </p>
+
+            </div>
 
         </div>
 
+    </section>
 
-        <!-- PERGUNTA 4 -->
 
-        <div class="question">
+    <!-- =========================
+         EXPERIMENTO
+    ========================== -->
 
-            <h3>
-                4. Por que não devemos escolher uma cirurgia
-                apenas porque outra pessoa fez?
-            </h3>
+    <section id="experimento">
 
-            <label class="option">
-                <input type="radio" name="q4" value="a">
-                Porque o resultado é sempre igual
-            </label>
+        <h2 class="section-title">
+            🔬 Meu Laboratório da Visão
+        </h2>
 
-            <label class="option">
-                <input type="radio" name="q4" value="b">
-                Porque cada pessoa precisa ser avaliada individualmente
-            </label>
+        <p class="section-subtitle">
+            Escolha uma situação de visão e mova a lente.
+            Observe como a nitidez muda nesta simulação.
+        </p>
 
-            <label class="option">
-                <input type="radio" name="q4" value="c">
-                Porque exames não são necessários
-            </label>
 
-            <label class="option">
-                <input type="radio" name="q4" value="d">
-                Porque apenas os óculos importam
-            </label>
+        <div class="experiment">
+
+            <div class="experiment-grid">
+
+
+                <!-- OLHO -->
+
+                <div class="eye-area">
+
+                    <div class="eye" id="eye">
+
+                        <div class="iris">
+
+                            <div class="pupil"></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONTROLES -->
+
+                <div class="controls">
+
+                    <label for="visionType">
+                        Escolha uma situação:
+                    </label>
+
+                    <select id="visionType">
+
+                        <option value="normal">
+                            Visão normal
+                        </option>
+
+                        <option value="myopia">
+                            Miopia
+                        </option>
+
+                        <option value="hyperopia">
+                            Hipermetropia
+                        </option>
+
+                    </select>
+
+
+                    <label for="lens">
+                        Ajuste a lente:
+                    </label>
+
+                    <input
+                        type="range"
+                        id="lens"
+                        min="-100"
+                        max="100"
+                        value="0"
+                    >
+
+
+                    <div class="experiment-result">
+
+                        <strong id="status">
+                            Imagem em foco
+                        </strong>
+
+                        <p id="explanation">
+                            Escolha uma situação e mova a barra.
+                        </p>
+
+                    </div>
+
+
+                    <p class="warning">
+                        💡 Esta é uma simulação educativa.
+                        Não é um teste de visão e não realiza
+                        diagnóstico.
+                    </p>
+
+                </div>
+
+            </div>
 
         </div>
 
+    </section>
 
-        <!-- PERGUNTA 5 -->
 
-        <div class="question">
+    <!-- =========================
+         QUIZ
+    ========================== -->
 
-            <h3>
-                5. Por que o acompanhamento depois da
-                cirurgia é importante?
-            </h3>
+    <section id="quiz">
 
-            <label class="option">
-                <input type="radio" name="q5" value="a">
-                Apenas para escolher novos óculos
-            </label>
+        <h2 class="section-title">
+            🧠 Quiz sobre Cirurgia Ocular
+        </h2>
 
-            <label class="option">
-                <input type="radio" name="q5" value="b">
-                Para acompanhar a recuperação
-            </label>
+        <p class="section-subtitle">
+            Teste o que você aprendeu durante o projeto.
+        </p>
 
-            <label class="option">
-                <input type="radio" name="q5" value="c">
-                Para mudar o formato do olho
-            </label>
 
-            <label class="option">
-                <input type="radio" name="q5" value="d">
-                Porque sempre é necessária outra cirurgia
-            </label>
+        <div class="quiz-box">
+
+
+            <!-- PERGUNTA 1 -->
+
+            <div class="question">
+
+                <h3>
+                    1. Qual é uma das primeiras atitudes para
+                    saber se uma cirurgia ocular pode ser indicada?
+                </h3>
+
+                <label class="option">
+                    <input type="radio" name="q1" value="a">
+                    Fazer uma avaliação com oftalmologista
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q1" value="b">
+                    Escolher a cirurgia pela internet
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q1" value="c">
+                    Usar o mesmo procedimento de um amigo
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q1" value="d">
+                    Decidir apenas pelo grau dos óculos
+                </label>
+
+            </div>
+
+
+            <!-- PERGUNTA 2 -->
+
+            <div class="question">
+
+                <h3>
+                    2. Por que os exames são importantes antes
+                    de uma cirurgia?
+                </h3>
+
+                <label class="option">
+                    <input type="radio" name="q2" value="a">
+                    Para escolher a cor dos olhos
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q2" value="b">
+                    Para avaliar as condições dos olhos
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q2" value="c">
+                    Para garantir o mesmo resultado para todos
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q2" value="d">
+                    Para substituir a consulta médica
+                </label>
+
+            </div>
+
+
+            <!-- PERGUNTA 3 -->
+
+            <div class="question">
+
+                <h3>
+                    3. Qual cirurgia está relacionada à
+                    substituição do cristalino?
+                </h3>
+
+                <label class="option">
+                    <input type="radio" name="q3" value="a">
+                    Cirurgia de catarata
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q3" value="b">
+                    Cirurgia refrativa
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q3" value="c">
+                    Cirurgia de estrabismo
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q3" value="d">
+                    Cirurgia de retina
+                </label>
+
+            </div>
+
+
+            <!-- PERGUNTA 4 -->
+
+            <div class="question">
+
+                <h3>
+                    4. Por que não devemos escolher uma cirurgia
+                    apenas porque outra pessoa fez?
+                </h3>
+
+                <label class="option">
+                    <input type="radio" name="q4" value="a">
+                    Porque o resultado é sempre igual
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q4" value="b">
+                    Porque cada pessoa precisa ser avaliada individualmente
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q4" value="c">
+                    Porque exames não são necessários
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q4" value="d">
+                    Porque apenas os óculos importam
+                </label>
+
+            </div>
+
+
+            <!-- PERGUNTA 5 -->
+
+            <div class="question">
+
+                <h3>
+                    5. Por que o acompanhamento depois da
+                    cirurgia é importante?
+                </h3>
+
+                <label class="option">
+                    <input type="radio" name="q5" value="a">
+                    Apenas para escolher novos óculos
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q5" value="b">
+                    Para acompanhar a recuperação
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q5" value="c">
+                    Para mudar o formato do olho
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q5" value="d">
+                    Porque sempre é necessária outra cirurgia
+                </label>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="btn"
+                id="quizButton"
+            >
+                Ver meu resultado
+            </button>
+
+
+            <div
+                id="quizResult"
+                class="quiz-result"
+            ></div>
 
         </div>
 
-
-        <button
-            class="btn"
-            id="quizButton"
-            type="button"
-        >
-            Ver resultado
-        </button>
+    </section>
 
 
-        <div
-            id="quizResult"
-            class="result quiz-result">
-        </div>
+    <!-- =========================
+         RODAPÉ
+    ========================== -->
 
-    </div>
+    <footer>
 
-</section>
+        <h3>
+            Trabalho de Física
+        </h3>
+
+        <p>
+            <strong>Alunas:</strong>
+            Lauane Lemes,
+            Larissa Santiago,
+            Luciele Oliveira
+            e Eloisa Ians
+        </p>
+
+        <p>
+            <strong>Turma:</strong>
+            2º A
+        </p>
+
+        <p class="footer-note">
+            Projeto educativo sobre Física, Ótica e Cirurgia Ocular.
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
